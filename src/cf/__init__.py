@@ -10,6 +10,7 @@ from loguru import logger as global_logger
 
 logger = global_logger.bind(name="cf")
 
+logger.remove()
 logger.add(
     sink=sys.stderr,
     format="<green>{time:HH:mm:ss.SSS}</green> | <level>{level:8}</level> | {file.name}:{line} <cyan>{message}</cyan>",

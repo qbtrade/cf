@@ -1,10 +1,7 @@
-from loguru import logger
+from cf import logger
 
 
 def main():
-    from cf import init_loguru
-
-    init_loguru()
 
     logger.trace("Hello, world!")
     logger.debug("Hello, world!")
