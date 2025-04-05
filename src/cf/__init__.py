@@ -5,9 +5,10 @@ __email__ = "tyz@1token.trade"
 __version__ = "0.1.0"
 import sys
 
+from loguru import logger
+
 
 def init_loguru():
-    from loguru import logger
 
     # 12:56:05.284 | DEBUG    | download_image.py:93
 
@@ -18,3 +19,6 @@ def init_loguru():
         format="<green>{time:HH:mm:ss.SSS}</green> | <level>{level:8}</level> | {file.name}:{line} <cyan>{message}</cyan>",
         level="DEBUG",
     )
+
+
+__all__ = ["logger"]
