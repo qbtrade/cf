@@ -3,13 +3,13 @@ from cf import logger
 
 def main():
 
-    logger.trace("Hello, world!")
-    logger.debug("Hello, world!")
-    logger.info("Hello, world!")
-    logger.success("Hello, world!")
-    logger.warning("Hello, world!")
-    logger.error("Hello, world!")
-    logger.critical("Hello, world!")
+    logger.trace("Hello, trace world!")
+    logger.debug("Hello, debug world!")
+    logger.info("Hello, info world!")
+    logger.success("Hello, success world!")
+    logger.warning("Hello, warning world!")
+    logger.error("Hello, error world!")
+    logger.critical("Hello, critical world!")
 
 
 if __name__ == "__main__":

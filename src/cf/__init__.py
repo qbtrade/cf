@@ -12,9 +12,11 @@ logger = global_logger.bind(name="cf")
 
 # INFO [13:30:28.370][HedgeConfig.py:86]
 logger.remove()
+logger.level("DEBUG", color="<dim>")
+logger.level("WARNING", color="<red>")
 logger.add(
     sink=sys.stderr,
-    format="<level>{level:8}</level>[{time:HH:mm:ss.SSS}][{file.name}:{line}] <cyan>{message}</cyan>",
+    format="<level>{level:5}[{time:HH:mm:ss.SSS}][{file.name}:{line}] {message}</>",
     level="DEBUG",
 )
 
