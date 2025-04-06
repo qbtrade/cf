@@ -10,10 +10,11 @@ from loguru import logger as global_logger
 
 logger = global_logger.bind(name="cf")
 
+# INFO [13:30:28.370][HedgeConfig.py:86]
 logger.remove()
 logger.add(
     sink=sys.stderr,
-    format="<green>{time:HH:mm:ss.SSS}</green> | <level>{level:8}</level> | {file.name}:{line} <cyan>{message}</cyan>",
+    format="<level>{level:8}</level>[{time:HH:mm:ss.SSS}][{file.name}:{line}] <cyan>{message}</cyan>",
     level="DEBUG",
 )
 
