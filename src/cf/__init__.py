@@ -93,17 +93,11 @@ logger.add(
 
 
 def init():
-    init_loguru_global()
+    init_pandas()
 
 
-def init_loguru_global():
+def init_pandas():
+    import pandas
 
-    # 12:56:05.284 | DEBUG    | download_image.py:93
-
-    global_logger.remove()  # 移除默认的 handler
-
-    global_logger.add(
-        sink=sys.stderr,
-        format="<green>{time:HH:mm:ss.SSS}</green> | <level>{level:8}</level> | {file.name}:{line} <cyan>{message}</cyan>",
-        level="DEBUG",
-    )
+    # TODO set pandas default options
+    # pandas.set_option("")
