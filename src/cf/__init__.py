@@ -9,6 +9,7 @@ import hashlib
 from loguru import logger as global_logger
 from pathlib import Path
 import json
+from functools import lru_cache
 
 
 def sanitize_args(args: list[str]) -> str:
@@ -82,14 +83,16 @@ logger.add(
 )
 
 
-logger.add(
-    get_log_path(),
-    level="DEBUG",
-    rotation="10 MB",
-    retention="7 days",
-    # serialize=True,
-    format=formatter,
-)
+@lru_cache(maxsize=1)
+def logger_add_path():
+    logger.add(
+        get_log_path(),
+        level="DEBUG",
+        rotation="10 MB",
+        retention="7 days",
+        # serialize=True,
+        format=formatter,
+    )
 
 
 def init():
