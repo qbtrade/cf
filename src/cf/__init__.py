@@ -95,6 +95,15 @@ def logger_add_path():
     )
 
 
+def set_log_level(level: str):
+    logger.remove()
+    logger.add(
+        sink=sys.stdout,
+        format="<level>{level:5}</level> <dim>[{time:HH:mm:ss.SSS}][{file.name}:{line}]</dim> <level>{message}</level>",
+        level=level,
+    )
+
+
 def init():
     init_pandas()
 
