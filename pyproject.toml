@@ -1,6 +1,6 @@
 [project]
 name = "cf"
-version = "0.1.0"
+version = "0.1.1"
 description = "Core function library - basic utilities, no API, no connection, best code practice"
 readme = "README.rst"
 requires-python = ">=3.10"
