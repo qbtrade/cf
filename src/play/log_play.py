@@ -2,7 +2,6 @@ from cf import logger
 
 
 def main():
-
     logger.trace("Hello, trace world!")
     logger.debug("Hello, debug world!")
     logger.info("Hello, info world!")

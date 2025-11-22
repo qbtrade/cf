@@ -3,13 +3,14 @@
 __author__ = """cf"""
 __email__ = "tyz@1token.trade"
 __version__ = "0.1.0"
-import sys
-import re
 import hashlib
-from loguru import logger as global_logger
-from pathlib import Path
 import json
+import re
+import sys
 from functools import lru_cache
+from pathlib import Path
+
+from loguru import logger as global_logger
 
 
 def sanitize_args(args: list[str]) -> str:
@@ -59,7 +60,7 @@ def json_serialize(record):
         "time_human": record["time"].strftime("%Y-%m-%dT%H:%M:%S.%f%z"),
         "level": record["level"].name,
         "message": record["message"],
-        "file": f'{record["file"].name}:{record["line"]}',
+        "file": f"{record['file'].name}:{record['line']}",
     }
     return json.dumps(payload)
 
@@ -72,15 +73,17 @@ def formatter(record):
 
 logger = global_logger.bind(name="cf")
 
-# INFO [13:30:28.370][HedgeConfig.py:86]
+# 日志格式: INFO [13:30:28.370][file.py:86] message
+_LOG_FORMAT = (
+    "<level>{level:5}</level> "
+    "<dim>[{time:HH:mm:ss.SSS}][{file.name}:{line}]</dim> "
+    "<level>{message}</level>"
+)
+
 logger.remove()
 logger.level("DEBUG", color="<dim>")
 logger.level("WARNING", color="<red>")
-logger.add(
-    sink=sys.stdout,
-    format="<level>{level:5}</level> <dim>[{time:HH:mm:ss.SSS}][{file.name}:{line}]</dim> <level>{message}</level>",
-    level="DEBUG",
-)
+logger.add(sink=sys.stdout, format=_LOG_FORMAT, level="DEBUG")
 
 
 @lru_cache(maxsize=1)
@@ -97,11 +100,7 @@ def logger_add_path():
 
 def set_log_level(level: str):
     logger.remove()
-    logger.add(
-        sink=sys.stdout,
-        format="<level>{level:5}</level> <dim>[{time:HH:mm:ss.SSS}][{file.name}:{line}]</dim> <level>{message}</level>",
-        level=level,
-    )
+    logger.add(sink=sys.stdout, format=_LOG_FORMAT, level=level)
 
 
 def init():
@@ -109,7 +108,7 @@ def init():
 
 
 def init_pandas():
-    import pandas
+    import pandas  # noqa: F401
 
     # TODO set pandas default options
     # pandas.set_option("")

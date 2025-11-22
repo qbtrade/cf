@@ -1,63 +1,86 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "cf"
 version = "0.1.0"
-description = "core function, , basic need, no api, no connection, best code practice"
+description = "Core function library - basic utilities, no API, no connection, best code practice"
 readme = "README.rst"
+requires-python = ">=3.10"
+license = {text = "MIT"}
 authors = [
-  {name = "cf", email = "tyz@1token.trade"}
-]
-maintainers = [
-  {name = "cf", email = "tyz@1token.trade"}
+    {name = "tyz", email = "tyz@1token.trade"}
 ]
 classifiers = [
-
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
 ]
-license = {text = "MIT license"}
 dependencies = [
-  "typer"
+    "typer>=0.9.0",
+    "loguru>=0.7.0",
+    "arrow>=1.3.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "coverage",  # testing
-    "mypy",  # linting
-    "pytest",  # testing
-    "ruff"  # linting
+    "coverage>=7.0",
+    "mypy>=1.0",
+    "pytest>=8.0",
+    "ruff>=0.4",
 ]
 
 [project.urls]
+Homepage = "https://github.com/tangyouze/cf"
+Repository = "https://github.com/tangyouze/cf"
+Issues = "https://github.com/tangyouze/cf/issues"
+Changelog = "https://github.com/tangyouze/cf/blob/master/HISTORY.rst"
 
-bugs = "https://github.com/tangyouze/cf/issues"
-changelog = "https://github.com/tangyouze/cf/blob/master/changelog.md"
-homepage = "https://github.com/tangyouze/cf"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
+[tool.hatch.build.targets.wheel]
+packages = ["src/cf"]
 
-[tool.setuptools.package-data]
-"*" = ["*.*"]
+[dependency-groups]
+dev = [
+    "coverage>=7.0",
+    "mypy>=1.0",
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
 
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["src"]
 
-
-
-# Mypy
-# ----
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "SIM",    # flake8-simplify
+]
 
 [tool.mypy]
-files = "."
-
-# Use strict defaults
+python_version = "3.10"
 strict = true
 warn_unreachable = true
 warn_no_return = true
 
 [[tool.mypy.overrides]]
-# Don't require test functions to include types
 module = "tests.*"
 allow_untyped_defs = true
 disable_error_code = "attr-defined"
 
+[tool.pytest.ini_options]
+testpaths = ["tests", "src"]
+python_files = ["*_test.py", "test_*.py"]

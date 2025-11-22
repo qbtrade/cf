@@ -1,7 +1,5 @@
 """Console script for cf."""
 
-import cf
-
 import typer
 from rich.console import Console
 
@@ -12,7 +10,7 @@ console = Console()
 @app.command()
 def main():
     """Console script for cf."""
-    console.print("Replace this message by putting your code into " "cf.cli.main")
+    console.print("Replace this message by putting your code into cf.cli.main")
     console.print("See Typer documentation at https://typer.tiangolo.com/")
 
 
